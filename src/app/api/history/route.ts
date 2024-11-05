@@ -2,7 +2,7 @@ import { db } from '@/lib/firestore';
 import { NextRequest, NextResponse } from 'next/server';
 import { format } from 'date-fns';
 
-export async function GET(_req: NextRequest) {
+export async function GET() {
     try {
         const query = db.collection('requests');
         const snapshot = await query.get();
