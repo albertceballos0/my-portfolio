@@ -30,7 +30,7 @@ interface Filters {
 
 export default function HistoryTable({ initialData }: { initialData: HistoryItem[] }) {
   const router = useRouter()
-  const [historyData, setHistoryData] = useState(initialData)
+  const historyData = initialData
   const [filteredData, setFilteredData] = useState(initialData)
   const [currentPage, setCurrentPage] = useState(1)
   const [filters, setFilters] = useState<Filters>({ timeFilter: '', typeFilter: 'all', userFilter: '' })
