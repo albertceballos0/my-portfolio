@@ -2,7 +2,7 @@ import { Loader2 } from 'lucide-react'
 import dynamic from 'next/dynamic'
 import React, { useEffect, useState } from 'react'
 import {useNode} from '../../hooks/useNode'
-import { Card , CardContent, CardHeader, CardTitle} from '@/components/ui/card'
+import { Card, CardHeader, CardTitle} from '@/components/ui/card'
 import { useConvertPathToGraph, Link, Node } from '../../hooks/useConvertPathToGraph'
 
 
