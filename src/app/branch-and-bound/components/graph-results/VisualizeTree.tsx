@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { useGraphState } from '@/store/useGraphStore'
 import Tree from 'react-d3-tree'
 import { TreeNode } from '@/types'
+import CustomNode from './CustomNode'
 
 type TreeNodeNew = {
     name: string;
@@ -61,6 +62,7 @@ const VisualizeTree = () => {
                     translate={{ x: 400, y: 50 }}
                     zoom={zoom}
                     pathFunc="step"
+                    renderCustomNodeElement={(rd3tProps) => <CustomNode nodeDatum={rd3tProps.nodeDatum as unknown as TreeNodeNew}/>} 
                     separation={{ siblings: 1.5, nonSiblings: 2 }}
                     nodeSize={{ x: 220, y: 80 }}
                     zoomable={true}
