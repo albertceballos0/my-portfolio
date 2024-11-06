@@ -13,7 +13,7 @@ type TreeNodeNew = {
     children: TreeNodeNew[];
 }
 
-const CustomNode = ({ nodeDatum, toggleNode }: { nodeDatum: TreeNodeNew ; toggleNode: () => void }) => {
+const CustomNode = ({ nodeDatum }: { nodeDatum: TreeNodeNew  }) => {
 
     return (
         <foreignObject width={200} height={80} x={-100} y={-40}>
@@ -22,13 +22,17 @@ const CustomNode = ({ nodeDatum, toggleNode }: { nodeDatum: TreeNodeNew ; toggle
             ${nodeDatum.attributes?.best ? 'bg-green-100 border-2 border-green-500' : 
                 nodeDatum.attributes?.prunned ? 'bg-red-100 border-2 border-red-500' : 'bg-white border-2 border-primary'}
             `}
-            onClick={toggleNode}
         >
             <strong className="block mb-1">{nodeDatum.name}</strong>
             {nodeDatum.attributes && (
-            <div className="text-xs">
-                UB: {nodeDatum.attributes.upperBound}, LB: {nodeDatum.attributes.lowerBound}
-            </div>
+            <>
+                <div className="text-xs truncate" style={{ maxWidth: '180px' }}>
+                    UB: {nodeDatum.attributes.upperBound}, LB: {nodeDatum.attributes.lowerBound}
+                </div>
+                <div className="text-xs truncate" style={{ maxWidth: '180px' }}>
+                    PATH: {nodeDatum.attributes.path}
+                </div>
+            </>
             )}
         </div>
         </foreignObject>
