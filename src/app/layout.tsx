@@ -6,6 +6,7 @@ import './globals.css'
 import NavBar from '@/components/NavBar'
 import LoginModal from '@/hooks/LoginModal'
 import MessageModal from '@/hooks/MessageModal'
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const metadata: Metadata = {
   title: 'AI Vision App | Explore AI Vision Technologies',
@@ -27,6 +28,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </header>
         <main id="main-content">
           {children}
+          <SpeedInsights />
         </main>
         <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t bg-gray-50 text-gray-600">
           <p className="text-xs text-gray-500 dark:text-gray-400">© 2024 AI Vision App. All rights reserved.</p>
