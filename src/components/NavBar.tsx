@@ -1,3 +1,5 @@
+// NavBar.tsx
+
 'use client'
 
 import { useState, useEffect } from 'react'
@@ -55,40 +57,37 @@ export default function NavBar() {
     { href: '/hist', label: 'View History' },
   ]
 
-  const NavLinks = ({ isMobile = false }) => (
-    <nav className={`flex ${isMobile ? 'flex-col space-y-4' : 'space-x-1'}`}>
-      {navItems.map((item) => (
-        <Link
-          key={item.href}
-          href={item.href}
-          className={`px-3 py-2 text-sm font-medium rounded-md transition-colors
-            ${pathname === item.href 
-              ? 'bg-primary text-primary-foreground' 
-              : 'text-muted-foreground hover:bg-muted hover:text-primary'
-            } ${isMobile ? 'w-full' : ''}`}
-        >
-          {item.label}
-        </Link>
-      ))}
-    </nav>
-  )
-
   return (
-    <header className={`sticky top-0 z-50 w-full transition-all duration-300 ${isScrolled ? 'bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b' : 'bg-transparent'}`}>
+    <nav aria-label="Main Navigation" className={`sticky top-0 z-50 w-full transition-all duration-300 ${isScrolled ? 'bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b' : 'bg-transparent'}`}>
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
-          <Link href="/" className="font-bold text-xl">
-            ImageAI
+          <Link href="/" className="font-bold text-xl" aria-label="ImageAI Home">
+            <h1 className='text-xl font-bold'>ImageAI</h1>
           </Link>
           <div className="hidden md:block">
-            <NavLinks />
+            <div className="flex space-x-1">
+              {navItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`px-3 py-2 text-sm font-medium rounded-md transition-colors
+                    ${pathname === item.href 
+                      ? 'bg-primary text-primary-foreground' 
+                      : 'text-muted-foreground hover:bg-muted hover:text-primary'
+                    }`}
+                  aria-current={pathname === item.href ? 'page' : undefined}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
           </div>
           <div className="flex items-center space-x-4">
             {isInitialized ? (
               isLoggedIn ? (
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+                    <Button variant="ghost" className="relative h-8 w-8 rounded-full" aria-label="User Menu">
                       <Avatar className="h-8 w-8">
                         <AvatarImage src={user?.avatarUrl} alt={user?.name} />
                         <AvatarFallback>{user?.name?.charAt(0) || 'U'}</AvatarFallback>
@@ -110,33 +109,40 @@ export default function NavBar() {
                   </DropdownMenuContent>
                 </DropdownMenu>
               ) : (
-                <Button variant="ghost" size="icon" onClick={() => openModal()}>
+                <Button variant="ghost" size="icon" onClick={() => openModal()} aria-label="Log In">
                   <LogIn className="h-5 w-5" />
-                  <span className="sr-only">Sign In</span>
                 </Button>
               )
             ) : (
-              <Button variant="ghost" size="icon" disabled>
+              <Button variant="ghost" size="icon" disabled aria-label="Loading">
                 <Loader2 className="animate-spin h-5 w-5" />
-                <span className="sr-only">Loading</span>
               </Button>
             )}
             <Sheet>
               <SheetTrigger asChild>
-                <Button variant="outline" size="icon" className="md:hidden">
+                <Button variant="outline" size="icon" className="md:hidden" aria-expanded="false" aria-label="Open menu">
                   <Menu className="h-5 w-5" />
-                  <span className="sr-only">Open menu</span>
                 </Button>
               </SheetTrigger>
               <SheetContent side="right" className="w-[300px] sm:w-[400px]">
                 <div className="mt-6 flex flex-col space-y-6">
-                  <NavLinks isMobile />
+                  <div className="flex flex-col space-y-4">
+                    {navItems.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className="px-3 py-2 text-sm font-medium rounded-md transition-colors w-full text-muted-foreground hover:bg-muted hover:text-primary"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               </SheetContent>
             </Sheet>
           </div>
         </div>
       </div>
-    </header>
+    </nav>
   )
 }
