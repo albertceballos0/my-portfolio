@@ -1,5 +1,5 @@
 import { db } from '@/lib/firestore';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { format } from 'date-fns';
 
 export async function GET() {
