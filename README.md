@@ -1,6 +1,3 @@
-Aquí tienes un `README.md` más extendido para tu proyecto de IA Vision App. He incluido más detalles sobre la estructura, cómo usar los modelos de IA, y posibles configuraciones:
-
-```markdown
 # IA Vision App
 
 **IA Vision App** es una aplicación web desarrollada con **Next.js** que permite interactuar con modelos de **visión por computadora** utilizando **inteligencia artificial**. El proyecto incluye tanto un **frontend** interactivo como un **backend** que gestiona la comunicación con los modelos de IA, permitiendo la clasificación y análisis de imágenes en tiempo real.
