@@ -21,9 +21,6 @@ const GraphHeader = ({setIsVisitMode, isVisitMode} : CardHeaderProps) => {
         </div>
         <CardDescription>Load visits to generate a track</CardDescription>
 
-        <div className="flex items-center my-4">
-            <hr className="flex-grow border-t border-gray-300" />
-        </div>
         <GraphControls setIsVisitMode={setIsVisitMode} isVisitMode={isVisitMode} />
     </CardHeader>
   )
