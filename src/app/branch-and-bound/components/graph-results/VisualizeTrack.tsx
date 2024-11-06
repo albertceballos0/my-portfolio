@@ -47,9 +47,6 @@ const VisualizeTrack = () => {
             <span className="text-gray-700">Track Visualizations</span>
         </CardTitle>
         </CardHeader>
-        <CardContent>
-        <p className="font-mono text-sm">This is the best track for doing the visits</p>
-        </CardContent>
         <div className="flex justify-center items-center overflow-hidden border-t border-gray-200" style={{height:400}}>
             { loading && <Loader2 className="h-8 w-8 animate-spin text-primary" />} 
             {!loading &&
