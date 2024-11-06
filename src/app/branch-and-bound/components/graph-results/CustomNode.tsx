@@ -13,10 +13,12 @@ type TreeNodeNew = {
     children: TreeNodeNew[];
 }
 
-const CustomNode = ({ nodeDatum }: { nodeDatum: TreeNodeNew  }) => {
+const CustomNode = ({ nodeDatum, onClick }: { nodeDatum: TreeNodeNew, onClick : () => void  }) => {
 
     return (
-        <foreignObject width={200} height={80} x={-100} y={-40}>
+        <foreignObject width={200} height={80} x={-100} y={-40}
+        onClick={onClick}
+        >
         <div
             className={`p-2 rounded-md shadow-md text-center text-sm cursor-pointer transition-colors
             ${nodeDatum.attributes?.best ? 'bg-green-100 border-2 border-green-500' : 
@@ -35,6 +37,7 @@ const CustomNode = ({ nodeDatum }: { nodeDatum: TreeNodeNew  }) => {
             </>
             )}
         </div>
+        
         </foreignObject>
   )
 }
