@@ -43,7 +43,7 @@ export default function NavBar() {
     { href: '/object-removal', label: 'Remove Objects' },
     { href: '/image-generation', label: 'Generate Images' },
     { href: '/style-transfer', label: 'Transfer Style' },
-    { href: '/branch-and-bound', label: 'Optimize' },
+    { href: '/tsp', label: 'TSP' },
     { href: '/hist', label: 'View History' },
   ]
 
