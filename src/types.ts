@@ -20,12 +20,26 @@ export interface TreeNode {
   };
 }
 
+export interface ResultTSP {
+  type: string;
+  result: BABTreeInterface | BackTrackingInterface;
+}
+
+
+
 // resultInterface: Interface for the result of the algorithm
-export interface treeInterface {
+export interface BABTreeInterface {
   tree:  TreeNode ;
   best: TreeNode | null;
   executionTime: number;
 }
+
+export interface BackTrackingInterface {
+  best: TreeNode | null;
+  executionTime: number;
+  tree: TreeNode;
+}
+
 
 // RequestBaB: Interface for the request made to the backend
 export interface RequestBaB {
