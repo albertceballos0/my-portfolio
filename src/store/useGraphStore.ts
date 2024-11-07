@@ -1,17 +1,17 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { GraphData, treeInterface } from '@/types';
+import { GraphData, ResultTSP } from '@/types';
 
 
 
 interface GraphState {
   graph: GraphData;
   isGraph: boolean;
-  result: treeInterface | null;
+  result: ResultTSP | null;
   activeTab: string;
   setActiveTab: (tab: string) => void;
   setGraph: (data: GraphData) => void;
-  setResult : (res: treeInterface) => void;
+  setResult : (res: ResultTSP) => void;
   removeResult: () => void;
   removeGraph: () => void;
   addVisitedNode: (node: string) => void;
@@ -25,13 +25,13 @@ export const useGraphState = create<GraphState>()(
     (set) => ({
       graph: { nodes: [], links: [] },
       isGraph: false,
-      activeTab: 'graph',
+      activeTab: 'instructions',
       isInitialized: false,
       visitedNodes: [],
       result: null,
       setActiveTab: (tab: string) => set(() => ({ activeTab: tab })),
       removeResult: () => set(() => ({ result: null })),
-      setResult: (res: treeInterface) => set(() => ({ 
+      setResult: (res: ResultTSP) => set(() => ({ 
           result: res
        })),
       setVisitedNodes: (nodes: string[]) => set(() => ({ visitedNodes: nodes })),
