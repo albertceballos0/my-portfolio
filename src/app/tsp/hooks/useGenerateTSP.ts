@@ -1,7 +1,8 @@
 import { useGraphState } from '@/store/useGraphStore';
-import { convertirGraphATexto, parseTreeStructure } from '@/utils/parseGraphFile';
+import { convertirGraphATexto, parseBABStructure } from '@/utils/parseGraphFile';
 import { useMessageStore } from '@/store/useMessageStore';
 import axios from 'axios';
+import { parse } from 'path';
 
 
 export const useGenerateTSP = (setIsGenerating : (generating : boolean) => void) => {
@@ -32,7 +33,7 @@ export const useGenerateTSP = (setIsGenerating : (generating : boolean) => void)
             // Save the result to the database
             console.log("Resultado del TSP:", res.data.result);
             if (res.data.result) {
-                const result = parseTreeStructure(res.data.result);
+                const result = parseBABStructure(res.data.result);
                 setResult({ 
                     type : type,
                     result : result

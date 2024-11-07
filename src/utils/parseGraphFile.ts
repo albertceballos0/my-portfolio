@@ -1,4 +1,4 @@
-import {  GraphData, treeInterface, TreeNode } from "@/types";
+import {  BABTreeInterface, GraphData, TreeNode } from "@/types";
 
 /**
  * Parses the content of a graph file and extracts vertices and edges.
@@ -119,7 +119,7 @@ export function convertirGraphATexto(jsonData : GraphData, visits: string[]) {
  * console.log(result.executionTime);
  * ```
  */
-export function parseTreeStructure(text: string): treeInterface {
+export function parseBABStructure(text: string): BABTreeInterface {
     // Patrones para extraer información de los nodos del árbol
     const partialSolutionPattern = /Partial Solution:\s*Father: \[(.*?)\]\s*Path: \[(.*?)\]\s*Length: ([\d.]+)\s*Lower Bound: ([\d.e+-]+)\s*Upper Bound: ([\d.e+-]+)/g;
     const nodePrunnedPattern = /Node prunned:\s*Father: \[(.*?)\]\s*Path: \[(.*?)\]\s*Length: ([\d.]+)\s*Lower Bound: ([\d.e+-]+)\s*Upper Bound: ([\d.e+-]+)/g;
