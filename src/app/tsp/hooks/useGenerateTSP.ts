@@ -2,7 +2,6 @@ import { useGraphState } from '@/store/useGraphStore';
 import { convertirGraphATexto, parseBABStructure } from '@/utils/parseGraphFile';
 import { useMessageStore } from '@/store/useMessageStore';
 import axios from 'axios';
-import { parse } from 'path';
 
 
 export const useGenerateTSP = (setIsGenerating : (generating : boolean) => void) => {
