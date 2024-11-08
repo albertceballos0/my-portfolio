@@ -3,7 +3,9 @@ import dynamic from 'next/dynamic'
 import React, { useEffect, useState } from 'react'
 import {useNode} from '../../hooks/useNode'
 import { Card, CardHeader, CardTitle} from '@/components/ui/card'
-import { useConvertPathToGraph, Link, Node } from '../../hooks/useConvertPathToGraph'
+import { convertPathToGraph, Link, Node } from '../../utils/convertPathToGraph'
+import { useGraphState } from '@/store/useGraphStore'
+import { useParseResultData } from '../../hooks/useParseResultData'
 
 
 const ForceGraph2D = dynamic(
@@ -24,17 +26,24 @@ const VisualizeTrack = () => {
   const [links, setlinks] = useState<Link[]>();
   const [nodes, setNodes] = useState<Node[]>();
   const [loading, setLoading] = useState(false);
-
-
-  const { convertPathToGraph } = useConvertPathToGraph();
+  const { graph, result } = useGraphState();
  
+  const { parseResult} = useParseResultData();
+
   useEffect(() => {
         setLoading(true);
-        const res = convertPathToGraph();
+
+        if (!graph || !result) return;
+        
+        const path = parseResult().path;
+        const res = convertPathToGraph(graph, path);
+
         if (!res?.links && !res?.nodes) return;
+
         setNodes(res.nodes);
         setlinks(res.links);
         setLoading(false);
+
   },[])
 
 
@@ -80,8 +89,7 @@ const VisualizeTrack = () => {
             /> }
         </div>
     </Card>
-    
-
+  
   )
 }
 
