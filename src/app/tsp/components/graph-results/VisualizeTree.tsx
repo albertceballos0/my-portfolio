@@ -47,6 +47,7 @@ const VisualizeTree = () => {
           children: node.children ? node.children.map(traverseTree) : [],
         }
       }
+      if (!('tree' in result.result)) return
       const updatedTree = traverseTree(result.result.tree)
       setTree(updatedTree)
     }
