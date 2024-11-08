@@ -9,6 +9,7 @@ import VisualizeTree from "./graph-results/VisualizeTree"
 import TrackTabContent from "./graph-results/TrackTabContent"
 import { useGraphState } from "@/store/useGraphStore"
 import BABExplication from "./graph-results/BABExplication"
+import BackTrackingExplication from "./graph-results/BackTrackingExplication"
 
 export default function ResultDisplay() {
 
@@ -22,6 +23,7 @@ export default function ResultDisplay() {
           <CardTitle>TSP Solution Tree Visualization</CardTitle>
           {result?.type === 'branch-and-bound' && <CardDescription>Branch and Bound algorithm</CardDescription>}
           {result?.type === 'backtracking' && <CardDescription>BackTracking</CardDescription>}
+          {result?.type === 'backtracking-greedy' && <CardDescription>BackTracking Greedy</CardDescription>}
         </CardHeader>
         <CardContent>
           {!result && !isGraph && 
@@ -46,21 +48,27 @@ export default function ResultDisplay() {
                       </Button>
               </div>
       }
-          {result && result.type === 'branch-and-bound' && (
+          {result && (
           <>
               <ResultsLayout />
               <Tabs value={activeTabresults} onValueChange={setActiveTabResults} className="w-full">
-                <TabsList className="grid w-full grid-cols-3">
+                <TabsList className={`grid w-full ${result.type === 'branch-and-bound' ? 'grid-cols-3' : 'grid-cols-2'}`}>
                   <TabsTrigger value="track">Track Path</TabsTrigger>
-                  <TabsTrigger value="visualization">Tree Visualization</TabsTrigger>
-                  <TabsTrigger value="explication">Branch and Bound</TabsTrigger>
+                  {result.type === 'branch-and-bound' && <TabsTrigger value="visualization">Tree Visualization</TabsTrigger>}
+                  <TabsTrigger value="explication">{result.type === 'branch-and-bound' ? 'Branch and Bound' : 'Backtracking'}</TabsTrigger>
                 </TabsList>
                 <TabsContent value="explication">
-                  <BABExplication />
+                  {
+                    result.type === 'branch-and-bound' ? 
+                    <BABExplication /> :
+                    <BackTrackingExplication />
+                  }
                 </TabsContent>
-                <TabsContent value="visualization">
-                  <VisualizeTree />
-                </TabsContent>
+                  { result.type === 'branch-and-bound' && 
+                      <TabsContent value="visualization">
+                          <VisualizeTree />
+                      </TabsContent>
+                  }
                 <TabsContent value="track">
                   <TrackTabContent />
                 </TabsContent>
