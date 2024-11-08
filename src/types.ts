@@ -42,19 +42,34 @@ export interface BABTreeInterface {
 }
 
 
+export type TabsContent = {
+  path : string[],
+  length : number,
+  executionTime : number,
+  nodes? : number
+}
 // RequestBaB: Interface for the request made to the backend
-export interface RequestBaB {
-    userRequest: string,
-    data: string,
-    timestamp: string
+export interface RequestInterface {
+    user: userInterface,
+    data: unknown,
+    timestamp: Date,
+    type: string
 }
 
 // Tipos para nuestros datos
-export type RequestType = 'branch-and-bound' | 'object-detection' | 'avatar-generation' | 'object-removal' | 'image-generation' | 'style-transfer' | 'all'
+export type RequestType = 'tsp' | 'object-detection' | 'avatar-generation' | 'object-removal' | 'image-generation' | 'style-transfer' | 'all'
 
 export interface HistoryItem {
   id: string
   timestamp: string
   requestType: RequestType
   userEmail: string
+}
+
+
+
+export interface userInterface {
+  email: string;
+  avatarUrl: string;
+  name: string;
 }
