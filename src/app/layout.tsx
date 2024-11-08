@@ -1,5 +1,3 @@
-// app/layout.tsx
-
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import './globals.css'
@@ -12,6 +10,7 @@ export const metadata: Metadata = {
   title: 'AI Vision App | Explore AI Vision Technologies',
   description: 'Discover the latest in AI-driven image processing, object detection, and more.',
 }
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
@@ -22,15 +21,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="AI Vision App" />
       </head>
-      <body>
+      <body className="flex flex-col min-h-screen">
         <header className="sticky top-0 z-50 w-full bg-white/70 backdrop-blur-md shadow-md">
           <NavBar />
         </header>
-        <main id="main-content">
+        <main id="main-content" className="flex-grow">
           {children}
           <SpeedInsights />
         </main>
-        <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t bg-gray-50 text-gray-600">
+        <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full items-center px-4 md:px-6 border-t bg-gray-50 text-gray-600">
           <p className="text-xs text-gray-500 dark:text-gray-400">© 2024 AI Vision App. All rights reserved.</p>
           <nav className="sm:ml-auto flex gap-4 sm:gap-6">
             <Link className="text-xs hover:underline underline-offset-4" href="#" aria-label="Read Terms of Service">
