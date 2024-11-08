@@ -9,7 +9,7 @@ import { RequestInterface } from '@/types';
  * @returns {Promise<any>} - A promise that resolves to the response data.
  * @throws {Error} - Throws an error if the request fails.
  */
-export const save_request = async ( request: RequestInterface): Promise<any> => {
+export const save_request = async ( request: RequestInterface) => {
 
     const res = await axios.post('/api/save-request', { request});
 
@@ -20,7 +20,7 @@ export const save_request = async ( request: RequestInterface): Promise<any> => 
     return res.data;
 }
 
-export const fetcg_TSPrequest = async (id : string): Promise<any> => {
+export const fetcg_TSPrequest = async (id : string) => {
     const res = await axios.get('/api/get-request?id='+ id);
 
     if (res.status !== 200) {
