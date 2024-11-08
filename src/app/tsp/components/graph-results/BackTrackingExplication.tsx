@@ -50,7 +50,7 @@ const TSPBacktrackingExplanation = () => {
           <li><strong>Pruning:</strong> Eliminates branches where the partial path’s cost exceeds the minimum known cost, helping to narrow down the search.</li>
           <li><strong>Recursive Calls:</strong> Each call expands the current path by adding an unvisited city, exploring all possibilities at each level.</li>
           <li><strong>Backtracking:</strong> If a path reaches a dead-end, it "backs up" to try alternative routes, ensuring exhaustive exploration.</li>
-          <li><strong>Greedy Selection (in Greedy Backtracking):</strong> A heuristic choice of the next city based on the lowest immediate cost, balancing 
+          <li><strong>Greedy Selection {'('}in Greedy Backtracking{')'}:</strong> A heuristic choice of the next city based on the lowest immediate cost, balancing 
               between exploration and efficiency.</li>
         </ul>
 
