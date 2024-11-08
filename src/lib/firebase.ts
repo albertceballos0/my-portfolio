@@ -13,10 +13,6 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_APP_ID
 };
 
-
-console.log(firebaseConfig)
-
-
 export const googleProvider = new GoogleAuthProvider();
 export const githubProvider = new GithubAuthProvider()
 
