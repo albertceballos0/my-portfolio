@@ -49,12 +49,7 @@ const VisualizeTrack = () => {
 
   return (
     <Card>
-        <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-            <span className="text-gray-700">Track Visualizations</span>
-        </CardTitle>
-        </CardHeader>
-        <div className="flex justify-center items-center overflow-hidden border-t border-gray-200" style={{height:400}}>
+        <div className="flex justify-center items-center overflow-hidden h-full">
             { loading && <Loader2 className="h-8 w-8 animate-spin text-primary" />} 
             {!loading &&
             <ForceGraph2D
