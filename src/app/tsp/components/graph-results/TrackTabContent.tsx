@@ -33,8 +33,8 @@ export default function TrackTabContent() {
             </p>
           </div>
 
-          <ScrollArea >
-            <div className="flex flex-col gap-2 mt-6">
+          <ScrollArea className='h-60 mt-6'>
+            <div className="flex flex-col gap-2">
               {data.path.map((source: string, index: number) => (
                 <div key={index} className="flex items-center">
                   <div className="flex items-center px-4 py-2 rounded-lg w-full bg-gray-50 hover:bg-gray-100 transition">
