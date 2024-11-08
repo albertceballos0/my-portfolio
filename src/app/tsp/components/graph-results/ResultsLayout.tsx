@@ -1,15 +1,17 @@
-"use client"
-
 import React from 'react'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 import { useGraphState } from '@/store/useGraphStore'
 import { Badge } from '@/components/ui/badge'
 import { ClockIcon, RouteIcon } from 'lucide-react'
+import { TabsContent, useParseResultData } from '../../hooks/useParseResultData'
 
 const ResultsLayout = () => {
-  const { result, visitedNodes } = useGraphState()
+  const { visitedNodes } = useGraphState()
 
-  const best = result?.result?.best
+  const { parseResult } = useParseResultData()
+
+  const data : TabsContent = parseResult()
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
       <Card className="lg:col-span-2 bg-gradient-to-br from-green-200 to-green-50 shadow-md border border-green-300">
@@ -23,14 +25,14 @@ const ResultsLayout = () => {
           <div className="flex flex-col space-y-4">
             <div className="flex justify-between items-center">
               <div className="flex flex-wrap gap-2">
-                {best?.attributes.path.map((node, index) => (
+                {data.path.map((node, index) => (
                   <Badge key={index} variant="outline" className="text-green-600 border-green-600">
                     {node}
                   </Badge>
                 ))}
               </div>
               <p className="font-mono text-sm text-gray-800">
-                Total Length: {best?.attributes.length.toFixed(2)}
+                Total Length: {data.length.toFixed(2)}
               </p>
               <Badge className="bg-green-600 text-white">Optimal</Badge>
             </div>
@@ -48,7 +50,7 @@ const ResultsLayout = () => {
           </CardHeader>
           <CardContent>
             <p className="font-mono text-2xl font-bold text-center text-blue-800">
-              {result?.result.executionTime} ms
+              {data.executionTime} ms
             </p>
           </CardContent>
         </Card>
