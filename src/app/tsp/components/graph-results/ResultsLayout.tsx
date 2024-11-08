@@ -3,7 +3,8 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 import { useGraphState } from '@/store/useGraphStore'
 import { Badge } from '@/components/ui/badge'
 import { ClockIcon, RouteIcon } from 'lucide-react'
-import { TabsContent, useParseResultData } from '../../hooks/useParseResultData'
+import { useParseResultData } from '../../hooks/useParseResultData'
+import { TabsContent } from '@/types'
 
 const ResultsLayout = () => {
   const { visitedNodes } = useGraphState()
