@@ -1,5 +1,6 @@
 // Definition of the types used in the project
 
+
 // GraphData: Interface for the data of the graph
 export interface GraphData {
     nodes: {id : string}[]
@@ -22,22 +23,22 @@ export interface TreeNode {
 
 export interface ResultTSP {
   type: string;
-  result: BABTreeInterface | BackTrackingInterface;
+  result: BABTreeInterface | BackTrackingInterface;
 }
 
 
+export interface BackTrackingInterface {
+  path: string[];
+  length: number;
+  executionTime: number;
+  nodes: number;
+}
 
 // resultInterface: Interface for the result of the algorithm
 export interface BABTreeInterface {
   tree:  TreeNode ;
-  best: TreeNode | null;
+  best: TreeNode;
   executionTime: number;
-}
-
-export interface BackTrackingInterface {
-  best: TreeNode | null;
-  executionTime: number;
-  tree: TreeNode;
 }
 
 
