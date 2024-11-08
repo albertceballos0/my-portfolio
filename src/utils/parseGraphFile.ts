@@ -91,3 +91,29 @@ export function convertirGraphATexto(jsonData : GraphData, visits: string[]) {
 
    
 
+/**
+ * Parses a graph data object and returns a new object with formatted links and nodes.
+ *
+ * @param graph - The graph data to be parsed.
+ * @returns An object containing formatted links and nodes.
+ * 
+ * The returned object has the following structure:
+ * - `links`: An array of link objects, each containing:
+ *   - `id`: The ID of the link.
+ *   - `source`: The ID of the source node.
+ *   - `target`: The ID of the target node.
+ *   - `weight`: The weight of the link.
+ * - `nodes`: An array of node objects, each containing:
+ *   - `id`: The ID of the node.
+ */
+export const parseGraph = (graph : GraphData) => {
+  return {
+    links: graph.links.map((link) => ({
+      id: link.id,
+      source: typeof link.source === 'object' && 'id' in link.source ? link.source.id : link.source,
+      target: typeof link.target === 'object' && 'id' in link.target ? link.target.id : link.target,
+      weight: link.weight
+    })), // Guarda 'links' completos
+    nodes: graph.nodes.map((node) => ({ id: node.id })),
+  }
+}
