@@ -6,12 +6,15 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Badge } from "@/components/ui/badge"
 import { useGraphState } from '@/store/useGraphStore'
 import VisualizeTrack from './VisualizeTrack'
+import { TabsContent, useParseResultData } from '../../hooks/useParseResultData'
+
 
 export default function TrackTabContent() {
-  const { result, graph } = useGraphState()
+  const { graph } = useGraphState()
 
-  const best = result?.result?.best
+  const { parseResult } = useParseResultData()
 
+  const data : TabsContent = parseResult()
   
   return (
     <div className="flex flex-col space-y-6">
@@ -24,13 +27,13 @@ export default function TrackTabContent() {
                 Path Tracking
               </h4>
               <p className="text-xs text-gray-600 mb-2">
-                Optimal route: {best?.attributes.length.toFixed(2)}
+                Optimal route: {data.length.toFixed(2)}
               </p>
             </div>
             
             <ScrollArea className="h-[300px]">
               <div className="flex flex-col gap-2">
-                {best?.attributes.path.map((source: string, index: number) => (
+                {data.path.map((source: string, index: number) => (
                   <div key={index} className="flex items-center group">
                     <div className="flex items-center bg-gray-50 hover:bg-gray-100 px-4 py-2 rounded-lg w-full transition-colors">
                       <Badge variant="outline" className="bg-white h-8 w-8 rounded-full flex items-center justify-center p-2 mr-3">
@@ -38,14 +41,14 @@ export default function TrackTabContent() {
                       </Badge>
                       <div className="flex flex-col">
                         <span className="font-medium text-gray-700">{source}</span>
-                        {best && index < best.attributes.path.length - 1 ? (
+                        {index < data.path.length - 1 ? (
                           <span className="text-xs text-gray-500">
-                            To {best?.attributes.path[index + 1]}: {
+                            To {data.path[index + 1]}: {
                               graph.links.find(
                                 (link: {source : string | { id: string }, target: string | { id: string }, weight: number}) =>
                                   ((typeof link.source === 'string' ? link.source : link.source.id) === source && 
-                                  (typeof link.target === 'string' ? link.target : link.target.id) === best?.attributes.path[index + 1]) ||
-                                  ((typeof link.target === 'string' ? link.target : link.target.id) === best?.attributes.path[index + 1])
+                                  (typeof link.target === 'string' ? link.target : link.target.id) === data.path[index + 1]) ||
+                                  ((typeof link.target === 'string' ? link.target : link.target.id) === data.path[index + 1])
                               )?.weight.toFixed(2) || 'N/A'
                             } 
                           </span>
@@ -53,7 +56,7 @@ export default function TrackTabContent() {
                           <span className="text-xs text-gray-500">Finish</span>
                         )}
                       </div>
-                      {index < (best?.attributes.path.length ?? 0) - 1 && (
+                      {index < (data.path.length ?? 0) - 1 && (
                         <ArrowRight className="ml-auto text-gray-400 group-hover:text-gray-600 transition-colors" />
                       )}
                     </div>
@@ -65,7 +68,7 @@ export default function TrackTabContent() {
             <div className="flex flex-wrap gap-2">
               <div className="flex items-center gap-1 text-xs text-gray-600">
                 <MapPin className="h-3 w-3 text-blue-500" />
-                <span>Total: {best?.attributes.path.length ?? 0}</span>
+                <span>Total: {data.path.length ?? 0}</span>
               </div>
             </div>
           </div>
