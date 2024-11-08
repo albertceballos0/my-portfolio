@@ -6,7 +6,8 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Badge } from "@/components/ui/badge"
 import { useGraphState } from '@/store/useGraphStore'
 import VisualizeTrack from './VisualizeTrack'
-import { TabsContent, useParseResultData } from '../../hooks/useParseResultData'
+import { useParseResultData } from '../../hooks/useParseResultData'
+import { TabsContent } from '@/types'
 
 export default function TrackTabContent() {
   const { graph } = useGraphState()
