@@ -79,7 +79,10 @@ const GraphControls = ({ setIsVisitMode, isVisitMode }: GraphControlsProps) => {
                                     Branch And Bound
                                 </DropdownMenuItem>
                                 <DropdownMenuItem onClick={() => handleGenerateTSP('backtracking')}>
-                                    BackTracking
+                                    Backtracking Pure
+                                </DropdownMenuItem>
+                                <DropdownMenuItem onClick={() => handleGenerateTSP('backtracking-greedy')}>
+                                    Backtracking Greedy
                                 </DropdownMenuItem>
                             </DropdownMenuContent>
                         </DropdownMenu>
