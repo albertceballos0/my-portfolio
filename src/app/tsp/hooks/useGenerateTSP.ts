@@ -5,9 +5,9 @@ import { useMessageStore } from '@/store/useMessageStore';
 import axios from 'axios';
 
 
-export const useGenerateTSP = (setIsGenerating : (generating : boolean) => void) => {
+export const useGenerateTSP = () => {
 
-    const { graph, visitedNodes, setResult, setActiveTab } = useGraphState();
+    const { graph, visitedNodes, setResult, setActiveTab, setIsGenerating } = useGraphState();
     const { setMessage } = useMessageStore();
 
     const handleGenerateTSP =async (type : string) =>{
