@@ -25,12 +25,8 @@ export const useGenerateTSP = (setIsGenerating : (generating : boolean) => void)
             }
             console.log(type)
             // Send the text to the backend to generate the TSP
-            const res = await axios.post(process.env.NEXT_PUBLIC_GENERATE_TSP_API, { fileContent: text, type: type }, { timeout: 30000 }).catch((error) => {
-                if (error.code === 'ECONNABORTED') {
-                    setMessage('Error al generar track: tiempo de espera agotado', 'error');
-                } else {
-                    setMessage('Error al generar track', 'error');
-                }
+            const res = await axios.post(process.env.NEXT_PUBLIC_GENERATE_TSP_API, { fileContent: text, type: type }, { timeout: 15000 }).catch((error) => {
+                setMessage('Error al generar track: tiempo de espera agotado', 'error');            
                 setIsGenerating(false);
                 throw error;
             });
