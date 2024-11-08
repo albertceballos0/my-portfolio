@@ -19,7 +19,7 @@ export default function ResultDisplay() {
   return (
     <div className="space-y-6">
       <Card className="w-full">
-        <div className="border-b border-gray-200">
+        <div className="border-b border-gray-200 h-28">
           <CardHeader>
             <CardTitle>TSP Solution Tree Visualization</CardTitle>
             {result?.type === 'branch-and-bound' && <CardDescription>Branch and Bound algorithm</CardDescription>}

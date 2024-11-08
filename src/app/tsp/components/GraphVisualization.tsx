@@ -29,7 +29,7 @@ export default function GraphVisualization() {
                 
                 <div className="flex justify-center items-center overflow-hidden border-t border-gray-200">
                     {!isGraph ? (
-                        <CardContent className="text-gray-400">
+                        <CardContent className="text-gray-400 h-28">
                             <div className="text-center text-gray-400 py-8">
                                 <p>No graph data available</p>
                                 <Button 
