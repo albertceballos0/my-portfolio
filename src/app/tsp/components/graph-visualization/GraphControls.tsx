@@ -50,14 +50,14 @@ const GraphControls = ({ setIsVisitMode, isVisitMode }: GraphControlsProps) => {
                         <Button
                             onClick={() => setIsVisitMode(!isVisitMode)}
                             variant="outline"
-                            disabled={!isGraph}
+                            disabled={!isGraph || isGenerating}
                             className="whitespace-nowrap"
                         >
                             {isVisitMode ? 'Exit Visit Mode' : 'Load Visits'}
                         </Button>
                         <Button
                             onClick={handleResetVisits}
-                            disabled={!isGraph || visitedNodes.length === 0}
+                            disabled={!isGraph || visitedNodes.length === 0 || isGenerating}
                             className="whitespace-nowrap"
                         >
                             Reset Visits
@@ -88,7 +88,7 @@ const GraphControls = ({ setIsVisitMode, isVisitMode }: GraphControlsProps) => {
                         </DropdownMenu>
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
-                                <Button variant="destructive" disabled={!isGraph}>
+                                <Button variant="destructive" disabled={!isGraph || isGenerating}>
                                     <Trash2Icon className="w-4 h-4 md:mr-2" />
                                     <span className="hidden md:inline">Remove Graph</span>
                                 </Button>
@@ -108,7 +108,7 @@ const GraphControls = ({ setIsVisitMode, isVisitMode }: GraphControlsProps) => {
                     <Button
                         onClick={() => setIsVisitMode(!isVisitMode)}
                         variant="outline"
-                        disabled={!isGraph}
+                        disabled={!isGraph ||isGenerating}
                         className="whitespace-nowrap"
                     >
                         <Play className="w-4 h-4 mr-2" />
@@ -116,7 +116,7 @@ const GraphControls = ({ setIsVisitMode, isVisitMode }: GraphControlsProps) => {
                     </Button>
                     <Button
                         onClick={handleResetVisits}
-                        disabled={!isGraph || visitedNodes.length === 0}
+                        disabled={!isGraph || visitedNodes.length === 0 || isGenerating}
                         className="whitespace-nowrap"
                     >
                         <RotateCcw className="w-4 h-4 mr-2" />
