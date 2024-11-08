@@ -25,17 +25,18 @@ export default function ResultDisplay() {
           {result?.type === 'backtracking' && <CardDescription>BackTracking</CardDescription>}
           {result?.type === 'backtracking-greedy' && <CardDescription>BackTracking Greedy</CardDescription>}
         </CardHeader>
-        <CardContent>
           {!result && !isGraph && 
+            <CardContent className="text-gray-400">
               <div className="text-center text-gray-400 py-8">
-                  <p>No graph data available</p>
-                  <Button 
-                      className="mt-4" 
-                      onClick={() => setActiveTab('input')}
-                  >
-                      Load Sample Graph
-                  </Button>
-              </div>
+                        <p>No graph data available</p>
+                        <Button 
+                            className="mt-4" 
+                            onClick={() => setActiveTab('input')}
+                        >
+                            Load Sample Graph
+                        </Button>
+                    </div>
+            </CardContent>   
           }    
           { isGraph && !result &&
               <div className="text-center text-gray-400 py-8">
@@ -49,7 +50,7 @@ export default function ResultDisplay() {
               </div>
       }
           {result && (
-          <>
+            <div className="border-t border-gray-200">
               <ResultsLayout />
               <Tabs value={activeTabresults} onValueChange={setActiveTabResults} className="w-full">
                 <TabsList className={`grid w-full ${result.type === 'branch-and-bound' ? 'grid-cols-3' : 'grid-cols-2'}`}>
@@ -73,9 +74,8 @@ export default function ResultDisplay() {
                   <TrackTabContent />
                 </TabsContent>
               </Tabs>
-            </>
+            </div>
           )}
-        </CardContent>
       </Card>
     </div>
   )
