@@ -30,6 +30,7 @@ import { format } from 'date-fns'
 import { Skeleton } from '@/components/ui/skeleton'
 import { userInterface } from '@/types'
 import { fetchHistoryData, removeRequest } from '../utils/api'
+import { useAuthStore } from '@/store/useAuthStore'
 
 const typeOptions = [
   { label: 'All', value: 'all' },
@@ -62,6 +63,7 @@ export default function Historial({ initialData, isLoading }: HistorialProps) {
   const [currentPage, setCurrentPage] = useState(1)
   const itemsPerPage = 6
 
+  const { user } = useAuthStore();
   const [IsModalLoading, setIsModalLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [itemToDelete, setItemToDelete] = useState<number | null>(null)
@@ -203,7 +205,13 @@ export default function Historial({ initialData, isLoading }: HistorialProps) {
                       <Button variant="ghost" size="icon" aria-label="Ver detalles">
                         <Eye className="h-4 w-4" />
                       </Button>
-                        <Button variant="ghost" size="icon" aria-label="Eliminar" onClick={() => handleDelete(item.id)}>
+                        <Button 
+                          variant="ghost" 
+                          size="icon" 
+                          aria-label="Eliminar" 
+                          onClick={() => handleDelete(item.id)} 
+                          disabled={!user || user?.email !== item.user.email}
+                        >
                           <Trash2 className="h-4 w-4" />
                         </Button>                      
                     </div>
