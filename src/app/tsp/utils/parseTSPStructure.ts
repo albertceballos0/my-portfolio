@@ -54,7 +54,6 @@ export function parseBABStructure(text: string): BABTreeInterface {
       upperBound: number,
       prunned: boolean,
     ){
-        console.log(father, path, length, lowerBound, upperBound, prunned);
         const nodeName = path[path.length - 1];  // Último valor de `path` como nombre del nodo
         const nodePath = path.join(" -> ");
         
