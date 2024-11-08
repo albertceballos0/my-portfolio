@@ -1,18 +1,21 @@
-'use server'
-
-import { headers } from 'next/headers';
+import axios from 'axios';
 
 export const fetchHistoryData = async () => {
-  const headersData = await headers();
-  const host = headersData.get('host');
-  const protocol = headersData.get('x-forwarded-proto') || 'http'; // Usa 'https' en producción si es necesario
-  const currentURL = `${protocol}://${host}`;
 
-  console.log('currentURL', currentURL);
-  const response = await fetch(`${currentURL}/api/history`);
-  if (!response.ok) {
+  const response = await axios.get('/api/history');
+  if (response.status !== 200 || !response.data.success) {
     throw new Error(`HTTP error! status: ${response.status}`);
   }
   
-  return await response.json().then(data => data.data);
+  return response.data.data;
 };
+
+export const removeRequest = async (id: number) => {
+
+  const response = await axios.delete('/api/history/' + id);  
+  if (response.status !== 200 || !response.data.success) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+  
+  return response.data;
+}
