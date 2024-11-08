@@ -37,7 +37,6 @@ const CustomNode = ({ nodeDatum, onClick }: { nodeDatum: TreeNodeNew, onClick : 
             </>
             )}
         </div>
-        
         </foreignObject>
   )
 }
