@@ -17,10 +17,9 @@ interface GraphControlsProps {
 }
 
 const GraphControls = ({ setIsVisitMode, isVisitMode }: GraphControlsProps) => {
-    const [isGenerating, setIsGenerating] = useState(false);
     const [isExpanded, setIsExpanded] = useState(false);
-    const { visitedNodes, isGraph, removeGraph, removeResult, setVisitedNodes } = useGraphState();
-    const { handleGenerateTSP } = useGenerateTSP(setIsGenerating);
+    const { visitedNodes, isGraph, removeGraph, removeResult, setVisitedNodes, isGenerating } = useGraphState();
+    const { handleGenerateTSP } = useGenerateTSP();
 
     const handleResetVisits = () => {
         setVisitedNodes([]);
