@@ -1,5 +1,6 @@
 import { useGraphState } from '@/store/useGraphStore';
-import { convertirGraphATexto, parseBABStructure } from '@/utils/parseGraphFile';
+import { convertirGraphATexto } from '@/utils/parseGraphFile';
+import { parseBABStructure, parseBacktrackingStructure } from '../utils/parseTSPStructure';
 import { useMessageStore } from '@/store/useMessageStore';
 import axios from 'axios';
 
@@ -22,24 +23,33 @@ export const useGenerateTSP = (setIsGenerating : (generating : boolean) => void)
                 setIsGenerating(false);
                 return;
             }
+            console.log(type)
             // Send the text to the backend to generate the TSP
-            const res = await axios.post(process.env.NEXT_PUBLIC_GENERATE_TSP_API, { fileContent: text });
+            const res = await axios.post(process.env.NEXT_PUBLIC_GENERATE_TSP_API, { fileContent: text, type: type });
             if (res.status !== 200) {
                 setMessage('Error al generar track', 'error');
                 return;
             }
 
-            // Save the result to the database
-            console.log("Resultado del TSP:", res.data.result);
             if (res.data.result) {
-                const result = parseBABStructure(res.data.result);
-                setResult({ 
-                    type : type,
-                    result : result
-                });
+                if (type === 'branch-and-bound') {
+                    setResult({ 
+                        type : type,
+                        result : parseBABStructure(res.data.result)
+                    });
+
+                }else {
+                    setResult({ 
+                        type : type,
+                        result : parseBacktrackingStructure(res.data.result)
+                    });
+                } 
+                
                 setMessage('Track generado correctamente', 'success');
 
                 setActiveTab('result');
+                
+                
                 // Save the result to the history if is logged in
                 //if (isLoggedIn && user) saveToHistory(res.data.result, user.email, visitedNodes, graph);
 
