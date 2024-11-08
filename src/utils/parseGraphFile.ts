@@ -1,4 +1,4 @@
-import {   GraphData, BABTreeInterface, TreeNode } from "@/types";
+import {   GraphData } from "@/types";
 
 /**
  * Parses the content of a graph file and extracts vertices and edges.
