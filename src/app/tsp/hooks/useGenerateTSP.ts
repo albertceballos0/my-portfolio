@@ -26,6 +26,7 @@ export const useGenerateTSP = () => {
             console.log(type)
             // Send the text to the backend to generate the TSP
             const res = await axios.post(process.env.NEXT_PUBLIC_GENERATE_TSP_API, { fileContent: text, type: type }, { timeout: 15000 }).catch((error) => {
+                console.error("Error en handleGenerateTSP:", error);
                 setMessage('Error al generar track: tiempo de espera agotado', 'error');            
                 setIsGenerating(false);
                 throw error;
