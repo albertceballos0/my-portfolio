@@ -33,7 +33,7 @@ const TSPBacktrackingExplanation = () => {
         <h3 className="text-2xl font-semibold mt-6 mb-3">Greedy Backtracking</h3>
         <p className="mb-4">
           Greedy backtracking aims to incorporate heuristics that can reduce computation by making local "greedy" decisions at each step. At each point in 
-          the route, the algorithm selects the nearest unvisited city (or the city with the lowest travel cost) as the next candidate to explore further, 
+          the route, the algorithm selects the nearest unvisited city {'('}or the city with the lowest travel cost{')'} as the next candidate to explore further, 
           attempting to quickly find a solution close to optimal.
         </p>
         <p>
