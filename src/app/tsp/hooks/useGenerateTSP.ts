@@ -1,15 +1,20 @@
 import { useGraphState } from '@/store/useGraphStore';
-import { convertirGraphATexto } from '@/utils/parseGraphFile';
+import { convertirGraphATexto, parseGraph } from '@/utils/parseGraphFile';
 import { parseBABStructure, parseBacktrackingStructure } from '../utils/parseTSPStructure';
 import { useMessageStore } from '@/store/useMessageStore';
 import axios from 'axios';
+import { useParseResultData } from './useParseResultData';
+import { save_request } from '@/utils/api';
+import { RequestInterface } from '@/types';
+import { useAuthStore } from '@/store/useAuthStore';
 
 
 export const useGenerateTSP = () => {
 
     const { graph, visitedNodes, setResult, setActiveTab, setIsGenerating } = useGraphState();
     const { setMessage } = useMessageStore();
-
+    const  { parseResult } = useParseResultData();
+    const { user, isLoggedIn} = useAuthStore();
     const handleGenerateTSP =async (type : string) =>{
 
         try {
@@ -53,13 +58,25 @@ export const useGenerateTSP = () => {
                 } 
                 
                 setMessage('Track generado correctamente', 'success');
-
                 setActiveTab('result');
+            
+                if (isLoggedIn && user){
+                    const resultData = parseResult();    
+                    const graphData = parseGraph(graph);
+                    const data : RequestInterface= {
+                        type: 'tsp',
+                        data: {
+                            type: type,
+                            graph: graphData,
+                            visitedNodes: visitedNodes,
+                            result: resultData
+                        },
+                        user: user,
+                        timestamp: new Date(),   
+                    }
+                    save_request(data);
+                }
                 
-                
-                // Save the result to the history if is logged in
-                //if (isLoggedIn && user) saveToHistory(res.data.result, user.email, visitedNodes, graph);
-
             }else{
                 setMessage('Error al generar track', 'error');
             }
