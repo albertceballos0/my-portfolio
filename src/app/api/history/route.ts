@@ -13,11 +13,12 @@ export async function GET() {
 
         const historyEntries = snapshot.docs.map(doc => {
             const data = doc.data();
+            console.log('data', data);
             return {
                 id: doc.id,
-                userEmail: data.userEmail,
-                requestType: data.requestType,
-                timestamp: data.timestamp ? format(data.timestamp.toDate(), 'yyyy-MM-dd HH:mm:ss') : null
+                user: data.user,
+                type: data.type,
+                timestamp: data.timestamp ? format(data.timestamp, 'yyyy-MM-dd HH:mm:ss') : null
             };
         });
 
@@ -30,3 +31,4 @@ export async function GET() {
         );
     }
 }
+
