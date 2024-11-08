@@ -16,7 +16,6 @@ const serviceAccount = {
   universe_domain: process.env.NEXT_PUBLIC_SA_UNIVERSE_DOMAIN
 }
 
-console.log(process.env.NEXT_PUBLIC_SA_UNIVERSE_DOMAIN);
 // Inicializa Firebase Admin con las credenciales de la cuenta de servicio
 if (!admin.apps.length) {
     admin.initializeApp({
