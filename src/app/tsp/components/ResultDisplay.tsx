@@ -19,14 +19,16 @@ export default function ResultDisplay() {
   return (
     <div className="space-y-6">
       <Card className="w-full">
-        <CardHeader>
-          <CardTitle>TSP Solution Tree Visualization</CardTitle>
-          {result?.type === 'branch-and-bound' && <CardDescription>Branch and Bound algorithm</CardDescription>}
-          {result?.type === 'backtracking' && <CardDescription>BackTracking</CardDescription>}
-          {result?.type === 'backtracking-greedy' && <CardDescription>BackTracking Greedy</CardDescription>}
-        </CardHeader>
+        <div className="border-b border-gray-200">
+          <CardHeader>
+            <CardTitle>TSP Solution Tree Visualization</CardTitle>
+            {result?.type === 'branch-and-bound' && <CardDescription>Branch and Bound algorithm</CardDescription>}
+            {result?.type === 'backtracking' && <CardDescription>BackTracking</CardDescription>}
+            {result?.type === 'backtracking-greedy' && <CardDescription>BackTracking Greedy</CardDescription>}
+          </CardHeader>
+        </div>
+
           {!result && !isGraph && 
-            <CardContent className="text-gray-400">
               <div className="text-center text-gray-400 py-8">
                         <p>No graph data available</p>
                         <Button 
@@ -35,8 +37,7 @@ export default function ResultDisplay() {
                         >
                             Load Sample Graph
                         </Button>
-                    </div>
-            </CardContent>   
+              </div>
           }    
           { isGraph && !result &&
               <div className="text-center text-gray-400 py-8">
@@ -50,7 +51,7 @@ export default function ResultDisplay() {
               </div>
       }
           {result && (
-            <div className="border-t border-gray-200">
+            <>
               <ResultsLayout />
               <Tabs value={activeTabresults} onValueChange={setActiveTabResults} className="w-full">
                 <TabsList className={`grid w-full ${result.type === 'branch-and-bound' ? 'grid-cols-3' : 'grid-cols-2'}`}>
@@ -74,7 +75,7 @@ export default function ResultDisplay() {
                   <TrackTabContent />
                 </TabsContent>
               </Tabs>
-            </div>
+            </>
           )}
       </Card>
     </div>
