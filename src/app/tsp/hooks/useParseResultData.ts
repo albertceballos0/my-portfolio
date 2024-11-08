@@ -1,18 +1,11 @@
 import { useGraphState } from '@/store/useGraphStore';
-
-export type TabsContent = {
-    path : string[],
-    length : number,
-    executionTime : number,
-    nodes? : number
-  }
+import { TabsContent } from '@/types';
 
 export const useParseResultData = () => {
 
     const { result } = useGraphState()
 
     const parseResult = () => {
-        console.log(result)
         let data : TabsContent = {
             path : [],
             length : 0,
