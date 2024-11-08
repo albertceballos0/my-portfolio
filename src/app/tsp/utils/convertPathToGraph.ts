@@ -39,7 +39,6 @@ export const convertPathToGraph = (graph: GraphData, path:string[] ) => {
                 target: path[i + 1],
             });
         }
-        console.log(pathLinks, pathNodes)
         return {links: pathLinks, nodes: pathNodes}
 
 }
