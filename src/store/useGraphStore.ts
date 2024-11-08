@@ -9,6 +9,7 @@ interface GraphState {
   isGraph: boolean;
   result: ResultTSP | null;
   activeTab: string;
+  isGenerating: boolean;
   setActiveTab: (tab: string) => void;
   setGraph: (data: GraphData) => void;
   setResult : (res: ResultTSP) => void;
@@ -18,6 +19,7 @@ interface GraphState {
   isInitialized: boolean;
   visitedNodes: string[];
   setVisitedNodes: (nodes: string[]) => void;
+  setIsGenerating: (generating: boolean) => void;
 }
 
 export const useGraphState = create<GraphState>()(
@@ -29,11 +31,13 @@ export const useGraphState = create<GraphState>()(
       isInitialized: false,
       visitedNodes: [],
       result: null,
+      isGenerating: false,
       setActiveTab: (tab: string) => set(() => ({ activeTab: tab })),
       removeResult: () => set(() => ({ result: null })),
       setResult: (res: ResultTSP) => set(() => ({ 
           result: res
        })),
+      setIsGenerating: (generating: boolean) => set(() => ({ isGenerating: generating })),
       setVisitedNodes: (nodes: string[]) => set(() => ({ visitedNodes: nodes })),
       addVisitedNode: (node: string) => set((state) => ({ visitedNodes: [...state.visitedNodes, node] })),
       setGraph: (data: GraphData) => set(() => ({ graph: data, visitedNodes: [], result: null , isGraph: true})),
@@ -49,6 +53,7 @@ export const useGraphState = create<GraphState>()(
         result: state.result,
         activeTab: state.activeTab,
         isGraph: state.isGraph,
+        isGenerating: state.isGenerating,
         graph: state.graph
           ? {
               links: state.graph.links.map((link) => ({
