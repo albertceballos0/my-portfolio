@@ -118,8 +118,8 @@ const TSPBacktrackingExplanation = () => {
           <div className="border border-green-500 p-4 rounded">
             <h4 className="text-lg font-semibold text-green-500">Advantages</h4>
             <ul className="list-disc pl-6">
-              <li><strong>Optimal Solutions (Standard):</strong> Standard backtracking provides the best solution by examining all routes.</li>
-              <li><strong>Computational Efficiency (Greedy):</strong> Greedy backtracking can reduce computation, finding near-optimal solutions quickly.</li>
+              <li><strong>Optimal Solutions {'('}Standard{')'}:</strong> Standard backtracking provides the best solution by examining all routes.</li>
+              <li><strong>Computational Efficiency {'('}Greedy{')'}:</strong> Greedy backtracking can reduce computation, finding near-optimal solutions quickly.</li>
               <li><strong>Applicability:</strong> Effective for combinatorial problems requiring exact solutions on small datasets.</li>
             </ul>
           </div>
