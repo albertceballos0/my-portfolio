@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { GraphData, ResultTSP } from '@/types';
-
+import { parseGraph } from '@/utils/parseGraphFile';
 
 
 interface GraphState {
@@ -55,15 +55,7 @@ export const useGraphState = create<GraphState>()(
         isGraph: state.isGraph,
         isGenerating: state.isGenerating,
         graph: state.graph
-          ? {
-              links: state.graph.links.map((link) => ({
-                id: link.id,
-                source: typeof link.source === 'object' && 'id' in link.source ? link.source.id : link.source,
-                target: typeof link.target === 'object' && 'id' in link.target ? link.target.id : link.target,
-                weight: link.weight
-              })), // Guarda 'links' completos
-              nodes: state.graph.nodes.map((node) => ({ id: node.id })), // Guarda solo los 'id's de los nodos
-            }
+          ? parseGraph(state.graph)
           : null,
       }),
 
