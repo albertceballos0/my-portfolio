@@ -4,7 +4,6 @@ import { useModalStore } from "@/store/useModalStore";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth, googleProvider, githubProvider } from "@/lib/firebase";
 import { handleLogin } from "@/utils/api";
-import { set } from "date-fns";
 
 /**
  * Custom hook for handling user login with different providers.
@@ -41,7 +40,7 @@ export const useLogin = (setLoading : (loading: boolean) => void , setError : (e
             } catch (error) {
                 // Si el error indica que el usuario no existe, proceder con el registro
 
-                console.log("User not found, registering...");
+                console.log("User not found, registering...", error);
                 try {
                     await createUserWithEmailAndPassword(auth, email, password);
                     type = 1;
