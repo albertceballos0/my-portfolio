@@ -53,8 +53,22 @@ export interface RequestInterface {
     user: userInterface,
     data: unknown,
     timestamp: Date,
-    type: string
+    requestType: RequestType
 }
+
+// Opciones de filtro de tipo
+export const typeOptions = [
+  { label: 'All', value: 'all' },
+  { label: 'TSP', value: 'tsp' },
+  { label: 'Object Detection', value: 'object-detection' },
+]
+
+export const navItems = [
+  { href: '/', label: 'Home' },  
+  { href: '/object-detection', label: 'Detect Objects' },
+  { href: '/tsp', label: 'TSP' },
+  { href: '/hist', label: 'View History' },
+]
 
 // Tipos para nuestros datos
 export type RequestType = 'tsp' | 'object-detection' | 'avatar-generation' | 'object-removal' | 'image-generation' | 'style-transfer' | 'all'
@@ -63,7 +77,7 @@ export interface HistoryItem {
   id: string
   timestamp: string
   requestType: RequestType
-  userEmail: string
+  user: userInterface
 }
 
 
