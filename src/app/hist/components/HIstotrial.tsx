@@ -4,7 +4,7 @@ import HistorialTable from './HistorialTable';
 import Pagination from './Pagination';
 import DeleteConfirmationModal from './DeleteConfirmationModal';
 import { useState, useEffect } from 'react';
-import { useApi } from '../hooks/useApi';
+import { removeRequest } from '@/utils/api';
 import { useHistStore } from '@/store/useHist';
 import { HistoryItem } from '@/types';
 
@@ -13,7 +13,6 @@ interface HistorialProps {
 }
 
 export default function Historial({ isLoading }: HistorialProps) {
-  const { removeRequest } = useApi();
   const { hist, removeHistInstance } = useHistStore();
 
   const [data, setData] = useState<HistoryItem[]>([]);
