@@ -5,8 +5,10 @@ import { useMessageStore } from '@/store/useMessageStore';
 import axios from 'axios';
 import { useParseResultData } from './useParseResultData';
 import { save_request } from '@/utils/api';
-import { RequestInterface } from '@/types';
+import { RequestInterface, RequestType } from '@/types';
 import { useAuthStore } from '@/store/useAuthStore';
+import { useHistStore } from '@/store/useHist';
+import { format } from 'date-fns';
 
 
 export const useGenerateTSP = () => {
@@ -15,6 +17,7 @@ export const useGenerateTSP = () => {
     const { setMessage } = useMessageStore();
     const  { parseResult } = useParseResultData();
     const { user, isLoggedIn} = useAuthStore();
+    const { setHistInstance} = useHistStore();
     const handleGenerateTSP =async (type : string) =>{
 
         try {
@@ -64,7 +67,7 @@ export const useGenerateTSP = () => {
                     const resultData = parseResult();    
                     const graphData = parseGraph(graph);
                     const data : RequestInterface= {
-                        type: 'tsp',
+                        requestType: 'tsp' as RequestType,
                         data: {
                             type: type,
                             graph: graphData,
@@ -74,7 +77,14 @@ export const useGenerateTSP = () => {
                         user: user,
                         timestamp: new Date(),   
                     }
-                    save_request(data);
+                    save_request(data).then((id) =>{
+                        if (id) setHistInstance({
+                            id : id,
+                            requestType: 'tsp' as RequestType,
+                            user: data.user,
+                            timestamp: data.timestamp ? format(new Date(data.timestamp), 'yyyy-MM-dd HH:mm:ss') : ''
+                        });
+                    })
                 }
                 
             }else{
