@@ -8,16 +8,14 @@ import { TabsContent } from '@/types'
 
 const ResultsLayout = () => {
   const { visitedNodes } = useGraphState()
-
   const { parseResult } = useParseResultData()
-
-  const data : TabsContent = parseResult()
+  const data: TabsContent = parseResult()
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
-      <Card className="lg:col-span-2 bg-gradient-to-br from-green-200 to-green-50 shadow-md border border-green-300">
+      <Card className="lg:col-span-2">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-green-700 font-semibold">
+          <CardTitle className="flex items-center gap-2">
             <RouteIcon className="h-5 w-5" />
             Best Solution Path
           </CardTitle>
@@ -27,47 +25,47 @@ const ResultsLayout = () => {
             <div className="flex justify-between items-center">
               <div className="flex flex-wrap gap-2">
                 {data.path.map((node, index) => (
-                  <Badge key={index} variant="outline" className="text-green-600 border-green-600">
+                  <Badge key={index} variant="outline">
                     {node}
                   </Badge>
                 ))}
               </div>
-              <p className="font-mono text-sm text-gray-800">
+              <p className="font-mono text-sm">
                 Total Length: {data.length.toFixed(2)}
               </p>
-              <Badge className="bg-green-600 text-white">Optimal</Badge>
+              <Badge variant="secondary">Optimal</Badge>
             </div>
           </div>
         </CardContent>
       </Card>
 
       <div className="space-y-4">
-        <Card className="bg-gradient-to-br from-blue-200 to-blue-50 shadow-md border border-blue-300">
+        <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-blue-700 font-semibold">
+            <CardTitle className="flex items-center gap-2">
               <ClockIcon className="h-5 w-5" />
               Execution Time
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="font-mono text-2xl font-bold text-center text-blue-800">
+            <p className="font-mono text-2xl font-bold text-center">
               {data.executionTime} ms
             </p>
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-br from-purple-200 to-purple-50 shadow-md border border-purple-300">
+        <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-purple-700 font-semibold">
+            <CardTitle className="flex items-center gap-2">
               <RouteIcon className="h-5 w-5" />
               Visits Summary
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="font-mono text-sm mb-2 text-gray-800">Total Visits: {visitedNodes.length}</p>
+            <p className="font-mono text-sm mb-2">Total Visits: {visitedNodes.length}</p>
             <div className="flex flex-wrap gap-2">
               {visitedNodes.map((node, index) => (
-                <Badge key={index} variant="outline" className="text-purple-600 border-purple-600">
+                <Badge key={index} variant="outline">
                   {node}
                 </Badge>
               ))}
