@@ -19,8 +19,13 @@ const ForceGraph2D = dynamic(
   }
 )
 
+interface VisualizeTrackInterface {
+  path: string[];
+  edge: number | null;
+}
 
-const VisualizeTrack = () => {
+
+const VisualizeTrack = ({path, edge} : VisualizeTrackInterface) => {
   const { getNodeColor } = useNode(false)
   const [links, setlinks] = useState<Link[]>();
   const [nodes, setNodes] = useState<Node[]>();
@@ -30,6 +35,7 @@ const VisualizeTrack = () => {
   const { parseResult} = useParseResultData();
 
   useEffect(() => {
+
         setLoading(true);
 
         if (!graph || !result) return;
@@ -47,42 +53,46 @@ const VisualizeTrack = () => {
 
 
   return (
-    <div className='flex flex-col justify-center items-center rounded-sm border border-gray-100 shadow-md'>
-      <div className="flex justify-center items-center overflow-hidden h-full w-full">
-        { loading && <Loader2 className="h-8 w-8 animate-spin text-primary" />} 
-        {!loading &&
-        <ForceGraph2D
-        graphData={{ nodes: nodes || [], links: links || [] }}
-        nodeLabel="id"
-        linkLabel="value"
-        linkDirectionalArrowLength={8}
-        linkDirectionalArrowRelPos={1}
-        linkCurvature={0.20}
-        linkColor={() => 'orange'}
-        nodeColor={(node) => getNodeColor({ id: String(node.id) })}
-        nodeCanvasObject={(node, ctx, globalScale) => {
-        const label = nodes?.find((nodeItem) => nodeItem.id === node.id)?.label.join(', ') || '';
-        const fontSize = 12 / globalScale;
-        ctx.font = `${fontSize}px Sans-Serif`;
-        ctx.fillStyle = 'black';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        if (node.x && node.y) {
-          ctx.fillText(label, node.x, node.y + 10);
-          ctx.fillText(String(node.id), node.x, node.y + 20);
+    <>
+      { loading && <Loader2 className="h-8 w-8 animate-spin text-primary" />} 
+      {!loading &&
+      <ForceGraph2D
+      graphData={{ nodes: nodes || [], links: links || [] }}
+      nodeLabel="id"
+      linkLabel="value"
+      linkDirectionalArrowLength={8}
+      linkDirectionalArrowRelPos={1}
+      linkCurvature={0.20}
+      linkColor={(link) => {
+        const index = path.findIndex((nodeId) => nodeId === (typeof link.source === 'object' && 'id' in link.source ? link.source.id : link.source));
+        if (index === edge && path[index + 1] === (typeof link.target === 'object' && 'id' in link.target ? link.target.id : link.target)) {
+          return 'red'; // Highlight the link with red color
         }
+        return 'gray'; // Default color
+      }}
+      nodeColor={(node) => getNodeColor({ id: String(node.id) })}
+      nodeCanvasObject={(node, ctx, globalScale) => {
+      const label = nodes?.find((nodeItem) => nodeItem.id === node.id)?.label.join(', ') || '';
+      const fontSize = 12 / globalScale;
+      ctx.font = `${fontSize}px Sans-Serif`;
+      ctx.fillStyle = 'black';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      if (node.x && node.y) {
+      ctx.fillText(label, node.x, node.y + 10);
+      ctx.fillText(String(node.id), node.x, node.y + 20);
+      }
 
-        // Draw a colored circle around the node
-        ctx.beginPath();
-        ctx.arc(node.x ?? 0, node.y ?? 0, 5, 0, 2 * Math.PI, false);
-        ctx.fillStyle = getNodeColor({ id: String(node.id) });
-        ctx.fill();
-        }}
-        enablePanInteraction={false} // Desactiva la capacidad de trasladar el grafo
-        height={400}
-        /> }
-      </div>
-    </div>
+      // Draw a colored circle around the node
+      ctx.beginPath();
+      ctx.arc(node.x ?? 0, node.y ?? 0, 5, 0, 2 * Math.PI, false);
+      ctx.fillStyle = getNodeColor({ id: String(node.id) });
+      ctx.fill();
+      }}
+      enablePanInteraction={false} // Desactiva la capacidad de trasladar el grafo
+      height={400}
+      /> }
+      </>
   )
 }
 
