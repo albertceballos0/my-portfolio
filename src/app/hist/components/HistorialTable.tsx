@@ -22,10 +22,12 @@ export default function HistorialTable({ isLoading, paginatedData, handleDelete 
   if (!user && isInitialized) {
     return (
       <div className="text-center text-gray-400 p-4">
-        <p>Por favor, inicia sesión para ver el historial.</p>
+        <hr className="mb-4 border-gray-300 mx-40" />
+        <p>Please, log in to see the history</p>
         <Button className="mt-4" onClick={() => openModal()}>
-          Load Sample Graph
+          Log in
         </Button>
+        <hr className="mt-4 border-gray-300 mx-40"  />
       </div>
     );
   }
