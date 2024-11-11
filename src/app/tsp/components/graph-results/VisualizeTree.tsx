@@ -1,6 +1,6 @@
 'use client'
 
-import { Info, ZoomIn, ZoomOut } from 'lucide-react'
+import { ZoomIn, ZoomOut } from 'lucide-react'
 import React, { useEffect, useState, useRef } from 'react'
 import { Button } from '@/components/ui/button'
 import { useGraphState } from '@/store/useGraphStore'
@@ -113,30 +113,6 @@ const VisualizeTree = () => {
               />
             )}
           </div>
-        </Card>
-        <Card className="mt-6">
-          <CardHeader>
-            <CardTitle className="mb-3 flex items-center gap-2 text-lg">
-              <Info className="h-5 w-5 text-gray-500" />
-              Legend
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex flex-wrap items-center gap-6">
-              <div className="flex items-center">
-                <div className="w-5 h-5 rounded-full border-2 border-primary bg-white mr-2"></div>
-                <span className="text-sm text-gray-700">Active Node</span>
-              </div>
-              <div className="flex items-center">
-                <div className="w-5 h-5 rounded-full bg-red-100 border-2 border-red-500 mr-2"></div>
-                <span className="text-sm text-gray-700">Pruned Node</span>
-              </div>
-              <div className="flex items-center">
-                <div className="w-5 h-5 rounded-full bg-green-100 border-2 border-green-500 mr-2"></div>
-                <span className="text-sm text-gray-700">Best Solution Node</span>
-              </div>
-            </div>
-          </CardContent>
         </Card>
       </div>
       <div className="flex-none w-full md:w-1/3" ref={nodeInfoRef}>
