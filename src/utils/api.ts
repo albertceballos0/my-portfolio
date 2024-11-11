@@ -22,12 +22,21 @@ export const save_request = async ( request: RequestInterface) => {
 
 }
 
-export const fetch_TSPRequest = async (id : string) => {
-    const res = await axios.get('/api/get-request?id='+ id);
-
-    if (res.status !== 200) {
-        console.error("Error in fetch_TSPrequest");
-        throw new Error("Error in fetch_TSPrequest");
+export const removeRequest = async (id: string) => {
+    const response = await axios.delete('/api/history/' + id);  
+    if (response.status !== 200 || !response.data.success) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
-    return res.data;
+    
+    return response.data;
 }
+
+
+export const handleLogin = async (email : string) => {
+    const response = await axios.post('api/users', { email });
+    if (response.status !== 200) {
+        throw new Error("Error al manejar el inicio de sesión");
+    }
+    return response.data;
+};
+
