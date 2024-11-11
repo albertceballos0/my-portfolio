@@ -21,6 +21,7 @@ export default function HistorialPage() {
 
   //Obtener historial si no esta cargado y el usuario esta logueado
   useEffect(() => {
+    setIsLoading(true)
     //Función para obtener datos
     const fetchData = async () => {
       const data = await fetchHistoryData();
