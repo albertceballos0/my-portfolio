@@ -17,14 +17,14 @@ export default function TrackTabContent() {
   return (
     <div className="flex flex-col md:flex-row">
       <div className="flex-1 md:w-2/3">
-      <Card>
-        <CardHeader>
-        <CardTitle>Path Tracking</CardTitle>
-        </CardHeader>
-        <div className="flex justify-center overflow-hidden items-center border-t border-gray-200">
-        <VisualizeTrack path={data.path} edge={edge} /> 
-        </div>
-      </Card>
+        <Card>
+          <CardHeader>
+          <CardTitle>Path Tracking</CardTitle>
+          </CardHeader>
+          <div className="flex justify-center overflow-hidden items-center border-t border-gray-200">
+            <VisualizeTrack path={data.path} edge={edge} /> 
+          </div>
+        </Card>
       </div>
       <div className="flex-none w-full md:w-1/3 pl-4">
       <Card>
