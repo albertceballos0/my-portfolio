@@ -5,7 +5,6 @@ import Pagination from './Pagination'
 import DeleteConfirmationModal from './DeleteConfirmationModal'
 import { useState, useEffect } from 'react'
 import { useApi } from '../hooks/useApi'
-import { useAuthStore } from '@/store/useAuthStore'
 import { useHistStore } from '@/store/useHist'
 import { HistoryItem } from '@/types'
 
