@@ -11,16 +11,18 @@ import { RequestInterface } from '@/types';
  */
 export const save_request = async ( request: RequestInterface) => {
 
-    const res = await axios.post('/api/save-request', { request});
+    const res = await axios.post('/api/history', { request});
 
     if (res.status !== 200) {
         console.error("Error in save_request");
         throw new Error("Error in save_request");
     }
-    return res.data;
+    if (res.data.id) return res.data.id;
+    else throw new Error("Error in save_request");
+
 }
 
-export const fetcg_TSPrequest = async (id : string) => {
+export const fetch_TSPRequest = async (id : string) => {
     const res = await axios.get('/api/get-request?id='+ id);
 
     if (res.status !== 200) {
