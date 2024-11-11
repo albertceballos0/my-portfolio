@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ message: 'Successful login' }, { status: 200 });
         } else {
             await emailRef.set({ createdAt: admin.firestore.FieldValue.serverTimestamp() });
-            return NextResponse.json({ message: 'Successfully registered' }, { status: 201 });
+            return NextResponse.json({ message: 'Successfully registered' }, { status: 200 });
         }
     } catch (error) {
         console.error('Error checking email:', error);
