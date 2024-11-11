@@ -25,13 +25,14 @@ export default function HistorialPage() {
     const fetchData = async () => {
       const data = await fetchHistoryData();
       setHist(data);
+      setIsLoading(false);
     };
 
     if (!isInitialized) return; //Si no esta inicializado no se hace nada, sigue en estado de loading
     //Si no hay historial (porque es la primera vez que clica el historial) y el usuario esta logueado se obtienen los datos
     if (!hist && user) fetchData();
     //Finalizar la carga
-    setIsLoading(false);
+    else setIsLoading(false);
   }, [hist, user]);
 
   //Componente Historial con estado de carga
