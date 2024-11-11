@@ -17,10 +17,13 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Loader2, Menu, LogIn, LogOut } from 'lucide-react'
+import { useHistStore } from '@/store/useHist'
+import { navItems } from '@/types'
 
 export default function NavBar() {
   const pathname = usePathname()
   const { isLoggedIn, logout, isInitialized, user } = useAuthStore()
+  const { removeHist} = useHistStore();
   const { openModal } = useModalStore()
   const { setMessage } = useMessageStore()
 
@@ -28,24 +31,14 @@ export default function NavBar() {
 
   const handleClickLogout = async () => {
     try {
-      await logout()
+      logout()
+      removeHist();
       setMessage('Logged out successfully', 'success')
     } catch (error) {
       console.error("Logout failed:", error)
       setMessage('Failed to log out', 'error')
     }
   }
-
-  const navItems = [
-    { href: '/', label: 'Home' },
-    { href: '/object-detection', label: 'Detect Objects' },
-    { href: '/avatar-generation', label: 'Create Avatar' },
-    { href: '/object-removal', label: 'Remove Objects' },
-    { href: '/image-generation', label: 'Generate Images' },
-    { href: '/style-transfer', label: 'Transfer Style' },
-    { href: '/tsp', label: 'TSP' },
-    { href: '/hist', label: 'View History' },
-  ]
 
   const NavLinks = ({ isMobile = false }) => (
     <nav className={`flex ${isMobile ? 'flex-col space-y-4' : 'space-x-1'}`}>
