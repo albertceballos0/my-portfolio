@@ -4,6 +4,7 @@ import Head from 'next/head'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Camera, Route, ArrowRight } from 'lucide-react'
+import Link from 'next/link'
 
 export default function HomePage() {
   return (
@@ -55,9 +56,11 @@ export default function HomePage() {
               </ul>
             </CardContent>
             <div className="px-6 pb-6">
-              <Button className="w-full" aria-label="Learn more about Object Detection">
+            <Button asChild>
+              <Link href="/object-detection">
                 Learn More <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+              </Link>
+            </Button>
             </div>
           </Card>
           
@@ -78,9 +81,11 @@ export default function HomePage() {
               </ul>
             </CardContent>
             <div className="px-6 pb-6">
-              <Button className="w-full" aria-label="Learn more about TSP Solution">
+            <Button asChild>
+              <Link href="/tsp">
                 Learn More <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+              </Link>
+            </Button>
             </div>
           </Card>
         </div>
