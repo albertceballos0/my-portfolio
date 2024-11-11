@@ -71,7 +71,7 @@ export default function Historial({ isLoading }: HistorialProps) {
   };
 
   return (
-    <div className="container mx-auto p-4 max-w-full">
+    <div className="container mx-auto p-8 max-w-full">
       <HistorialHeader />
       <HistorialFilters
         dateFilter={dateFilter}
