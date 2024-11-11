@@ -32,29 +32,14 @@ export const useApi = () => {
     if (response.status !== 200 || !response.data.success) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-
-    console.log(response.data)
-    return response.data.data;
-  };
-  
-  /**
-   * Removes a request from the history by its ID.
-   *
-   * @param {string} id - The ID of the request to be removed.
-   * @returns {Promise<any>} A promise that resolves to the response data if the request is successful.
-   * @throws {Error} Throws an error if the HTTP response status is not 200 or if the response data indicates failure.
-   */
-  const removeRequest = async (id: string) => {
-    const response = await axios.delete('/api/history/' + id);  
-    if (response.status !== 200 || !response.data.success) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+    if (!response.data.data) {
+      throw new Error('Failed to get history data');
     }
-    
-    return response.data;
-  }
+    return response.data.data;
+
+  };
 
   return {
     fetchHistoryData, 
-    removeRequest
   }
 }
