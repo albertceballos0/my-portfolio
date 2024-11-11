@@ -12,6 +12,7 @@ import { handleLogin } from "@/utils/api";
  * @param setError - Function to set the error state.
  * @returns An object containing functions to handle login with email/password, Google, and GitHub.
  */
+
 export const useLogin = (setLoading : (loading: boolean) => void , setError : (error : string) => void) => {
 
     const { login} = useAuthStore();
