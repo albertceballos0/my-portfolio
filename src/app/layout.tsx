@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import './globals.css'
 import NavBar from '@/components/NavBar'
-import LoginModal from '@/hooks/LoginModal'
-import MessageModal from '@/hooks/MessageModal'
+import LoginModal from '@/components/modals/LoginModal'
+import MessageModal from '@/components/modals/MessageModal'
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const metadata: Metadata = {
