@@ -60,9 +60,8 @@ const VisualizeTrack = ({path, edge} : VisualizeTrackInterface) => {
       graphData={{ nodes: nodes || [], links: links || [] }}
       nodeLabel="id"
       linkLabel="value"
-      linkDirectionalArrowLength={8}
+      linkDirectionalArrowLength={6}
       linkDirectionalArrowRelPos={1}
-      linkCurvature={0.20}
       linkColor={(link) => {
         const index = path.findIndex((nodeId) => nodeId === (typeof link.source === 'object' && 'id' in link.source ? link.source.id : link.source));
         if (index === edge && path[index + 1] === (typeof link.target === 'object' && 'id' in link.target ? link.target.id : link.target)) {
@@ -73,14 +72,13 @@ const VisualizeTrack = ({path, edge} : VisualizeTrackInterface) => {
       nodeColor={(node) => getNodeColor({ id: String(node.id) })}
       nodeCanvasObject={(node, ctx, globalScale) => {
       const label = nodes?.find((nodeItem) => nodeItem.id === node.id)?.label.join(', ') || '';
-      const fontSize = 12 / globalScale;
+      const fontSize = 10 / globalScale;
       ctx.font = `${fontSize}px Sans-Serif`;
       ctx.fillStyle = 'black';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       if (node.x && node.y) {
       ctx.fillText(label, node.x, node.y + 10);
-      ctx.fillText(String(node.id), node.x, node.y + 20);
       }
 
       // Draw a colored circle around the node
@@ -89,7 +87,6 @@ const VisualizeTrack = ({path, edge} : VisualizeTrackInterface) => {
       ctx.fillStyle = getNodeColor({ id: String(node.id) });
       ctx.fill();
       }}
-      enablePanInteraction={false} // Desactiva la capacidad de trasladar el grafo
       height={550}
       /> }
       </>
