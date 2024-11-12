@@ -82,7 +82,7 @@ export default function ResultDisplay() {
   return (
     <div className="space-y-6">
       <Card className="w-full">
-        <CardHeader className="border-b border-gray-200">
+        <CardHeader >
           <CardTitle>TSP Solution Tree Visualization</CardTitle>
           <CardDescription>{renderCardDescription()}</CardDescription>
         </CardHeader>
