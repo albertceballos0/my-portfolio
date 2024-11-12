@@ -83,6 +83,6 @@ Si deseas contribuir a este proyecto, sigue estos pasos:
 
 Este proyecto está bajo la **licencia MIT**. Para más detalles, consulta el archivo [LICENSE](LICENSE).
 
-```
 
-Este `README.md` ahora está más detallado e incluye secciones sobre el uso de los modelos de IA, la carga de imágenes y cómo personalizar la app, lo que facilitará a los futuros colaboradores entender cómo contribuir. Si deseas agregar o modificar algún detalle, no dudes en decirme.
+
+ 
