@@ -90,7 +90,7 @@ const VisualizeTrack = ({path, edge} : VisualizeTrackInterface) => {
       ctx.fill();
       }}
       enablePanInteraction={false} // Desactiva la capacidad de trasladar el grafo
-      height={400}
+      height={550}
       /> }
       </>
   )
