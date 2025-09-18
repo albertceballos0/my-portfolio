@@ -28,24 +28,24 @@ export const useGenerateRandomGraph = ( setError: (error : string | null) => voi
     const handleGenerateRandomGraph = async (nodes : number,edges: number) => {
         const validationError = validateInputs(nodes, edges);
         if (validationError) {
-        setError(validationError);
-        return;
+          setError(validationError);
+          return;
         }
         setIsLoading(true);
         setError(null);
 
         try {
 
-        await new Promise(resolve => setTimeout(resolve, 1000)); // 1-second timeout
-        const graph = generateRandomGraph(nodes, edges);
+          await new Promise(resolve => setTimeout(resolve, 1000)); // 1-second timeout
+          const graph = generateRandomGraph(nodes, edges);
 
-        setGraph(graph);
-        setActiveTab('graph');
-        setIsLoading(false);
+          setGraph(graph);
+          setActiveTab('graph');
+          setIsLoading(false);
 
         } catch (error) {
-        console.error('Error generating random graph:', error);
-        setError('An error occurred while generating the graph.');
+          console.error('Error generating random graph:', error);
+          setError('An error occurred while generating the graph.');
         } finally {
         }
     }
